@@ -39,4 +39,4 @@ fi
 # Setup Cachet
 cd $OPENSHIFT_REPO_DIR/Cachet
 cp $OPENSHIFT_REPO_DIR/env.local.php $OPENSHIFT_REPO_DIR/Cachet/.env.local.php
-#php ${OPENSHIFT_DATA_DIR}composer install --no-dev -o
+php ${OPENSHIFT_DATA_DIR}composer install --no-dev -o
