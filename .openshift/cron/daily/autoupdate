@@ -1,0 +1,12 @@
+#!/bin/bash
+export PATH=${OPENSHIFT_PHP_DIR}usr/bin:/bin:/usr/bin:/usr/sbin
+cd $OPENSHIFT_REPO_DIR/Cachet
+cp $OPENSHIFT_REPO_DIR/Cachet/composer.json.orig $OPENSHIFT_REPO_DIR/Cachet/composer.json
+cp $OPENSHIFT_REPO_DIR/Cachet/composer.lock.orig $OPENSHIFT_REPO_DIR/Cachet/composer.lock
+git pull
+cp $OPENSHIFT_REPO_DIR/Cachet/composer.json $OPENSHIFT_REPO_DIR/Cachet/composer.json.orig
+cp $OPENSHIFT_REPO_DIR/Cachet/composer.lock $OPENSHIFT_REPO_DIR/Cachet/composer.lock.orig
+sed -i s/ext-apcu/ext-apc/g $OPENSHIFT_REPO_DIR/Cachet/composer.json
+sed -i s/ext-apcu/ext-apc/g $OPENSHIFT_REPO_DIR/Cachet/composer.lock
+php ${OPENSHIFT_DATA_DIR}composer install --no-dev -o
+php artisan migrate
