@@ -17,6 +17,7 @@ else
 fi
 
 # install/update composer
+cd ${OPENSHIFT_HOMEDIR}/cachet-hhvm/usr/bin/
 if [ ! -f "${OPENSHIFT_DATA_DIR}/composer" ]; then
 	curl -s https://getcomposer.org/installer | ${OPENSHIFT_HOMEDIR}/cachet-hhvm/usr/bin/hhvm -- --install-dir=$OPENSHIFT_DATA_DIR --filename=composer
 else
