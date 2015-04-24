@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "deploying..."
+
+source $OPENSHIFT_PHP_DIR/lib/util
+
+# both nginx and phpfpm configs are rebuilt every deploy
+build_nginx_config & build_phpfpm_config
+
+# get cachet if doesn't exist
+if [ ! -d $OPENSHIFT_REPO_DIR/Cachet ]; then
+        cd $OPENSHIFT_REPO_DIR
+        git clone https://github.com/cachethq/Cachet.git Cachet
+else
+        cd $OPENSHIFT_REPO_DIR/Cachet
+        git pull
+fi
