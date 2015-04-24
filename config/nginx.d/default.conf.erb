@@ -1,5 +1,5 @@
 server {
-    root              <%= ENV['OPENSHIFT_REPO_DIR'] %>/Cachet/public %>;
+    root              <%= ENV['OPENSHIFT_REPO_DIR'] %>/Cachet/public;
     listen            <%= ENV['OPENSHIFT_PHP_IP'] %>:<%= ENV['OPENSHIFT_PHP_PORT'] %>;
     server_name       <%= ENV['OPENSHIFT_APP_DNS'] %>;
     index             index.php index.html index.htm <%= ENV['NGINX_EXTRA_INDEX'] %>;
