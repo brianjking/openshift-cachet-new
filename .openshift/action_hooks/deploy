@@ -17,10 +17,12 @@ else
 fi
 
 # install/update composer
-#cd ${OPENSHIFT_HOMEDIR}/cachet-hhvm/usr/bin/
-#if [ ! -f "${OPENSHIFT_DATA_DIR}/composer" ]; then
-#	curl -s https://getcomposer.org/installer | ${OPENSHIFT_HOMEDIR}/cachet-hhvm/usr/bin/hhvm -- --install-dir=$OPENSHIFT_DATA_DIR --filename=composer
-#else
-#    ${OPENSHIFT_HOMEDIR}/cachet-hhvm/usr/bin/hhvm ${OPENSHIFT_DATA_DIR}/composer self-update
-#
-#fi
+cd ${OPENSHIFT_DATA_DIR}
+if [ ! -f "${OPENSHIFT_DATA_DIR}/composer" ]; then
+	wget https://getcomposer.org/installer
+	LD_LIBRARY_PATH=${OPENSHIFT_PHP_DIR}usr/bin  ${OPENSHIFT_PHP_DIR}usr/bin/hhvm  --config ${OPENSHIFT_REPO_DIR}config/hhvm.d/config.ini installer --filename=composer
+	rm installer
+else
+    LD_LIBRARY_PATH=${OPENSHIFT_PHP_DIR}usr/bin  ${OPENSHIFT_PHP_DIR}usr/bin/hhvm  --config ${OPENSHIFT_REPO_DIR}config/hhvm.d/config.ini ${OPENSHIFT_DATA_DIR}/composer self-update
+
+fi
