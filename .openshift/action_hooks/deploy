@@ -22,8 +22,8 @@ fi
 # replace php-apcu with php-apc
 cp $OPENSHIFT_REPO_DIR/Cachet/composer.json $OPENSHIFT_REPO_DIR/Cachet/composer.json.orig
 cp $OPENSHIFT_REPO_DIR/Cachet/composer.lock $OPENSHIFT_REPO_DIR/Cachet/composer.lock.orig
-sed -i s/ext-apcu/php-apc/g $OPENSHIFT_REPO_DIR/Cachet/composer.json
-sed -i s/ext-apcu/php-apc/g $OPENSHIFT_REPO_DIR/Cachet/composer.lock
+sed -i s/ext-apcu/ext-apc/g $OPENSHIFT_REPO_DIR/Cachet/composer.json
+sed -i s/ext-apcu/ext-apc/g $OPENSHIFT_REPO_DIR/Cachet/composer.lock
 
 # install/update composer
 cd ${OPENSHIFT_DATA_DIR}
