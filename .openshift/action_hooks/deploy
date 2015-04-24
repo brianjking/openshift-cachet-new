@@ -3,6 +3,7 @@
 echo "deploying..."
 
 source $OPENSHIFT_PHP_DIR/lib/util
+export PATH=${OPENSHIFT_PHP_DIR}usr/bin:/bin:/usr/bin:/usr/sbin
 
 # both nginx and phpfpm configs are rebuilt every deploy
 build_nginx_config & build_phpfpm_config
