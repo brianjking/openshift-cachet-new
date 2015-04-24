@@ -5,6 +5,22 @@ echo "deploying..."
 source $OPENSHIFT_PHP_DIR/lib/util
 export PATH=${OPENSHIFT_PHP_DIR}usr/bin:/bin:/usr/bin:/usr/sbin
 
+cp $OPENSHIFT_REPO_DIR/env $OPENSHIFT_REPO_DIR/Cachet/.env
+
+# set environment variables
+echo "$OPENSHIFT_MYSQL_DB_HOST" > ~/.env/user_vars/DB_HOST
+echo "$OPENSHIFT_APP_NAME" > ~/.env/user_vars/DB_DATABASE
+echo "$OPENSHIFT_MYSQL_DB_USERNAME" > ~/.env/user_vars/DB_USERNAME
+echo "$OPENSHIFT_MYSQL_DB_PASSWORD" > ~/.env/user_vars/DB_PASSWORD
+echo "$OPENSHIFT_MYSQL_DB_PORT" > ~/.env/user_vars/DB_PORT
+
+DB_HOST=$OPENSHIFT_MYSQL_DB_HOST
+DB_DATABASE=$OPENSHIFT_APP_NAME
+DB_USERNAME=$OPENSHIFT_MYSQL_DB_USERNAME
+DB_PASSWORD=$OPENSHIFT_MYSQL_DB_PASSWORD
+DB_PORT=$OPENSHIFT_MYSQL_DB_PORT
+
+
 # both nginx and phpfpm configs are rebuilt every deploy
 build_nginx_config & build_phpfpm_config
 
@@ -38,5 +54,5 @@ fi
 
 # Setup Cachet
 cd $OPENSHIFT_REPO_DIR/Cachet
-cp $OPENSHIFT_REPO_DIR/env.local.php $OPENSHIFT_REPO_DIR/Cachet/.env.local.php
+cp $OPENSHIFT_REPO_DIR/env $OPENSHIFT_REPO_DIR/Cachet/.env
 php ${OPENSHIFT_DATA_DIR}composer install --no-dev -o
