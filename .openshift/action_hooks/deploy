@@ -16,6 +16,10 @@ else
         git pull
 fi
 
+# replace php-apcu with php-apc
+sed -i s/php-apcu/php-apc/g $OPENSHIFT_REPO_DIR/Cachet/composer.json
+sed -i s/php-apcu/php-apc/g $OPENSHIFT_REPO_DIR/Cachet/composer.lock
+
 # install/update composer
 cd ${OPENSHIFT_DATA_DIR}
 if [ ! -f "${OPENSHIFT_DATA_DIR}/composer" ]; then
@@ -26,3 +30,7 @@ else
     LD_LIBRARY_PATH=${OPENSHIFT_PHP_DIR}usr/bin  ${OPENSHIFT_PHP_DIR}usr/bin/hhvm  --config ${OPENSHIFT_REPO_DIR}config/hhvm.d/config.ini ${OPENSHIFT_DATA_DIR}/composer self-update
 
 fi
+
+# Setup Cachet
+cd $OPENSHIFT_REPO_DIR/Cachet
+php ${OPENSHIFT_DATA_DIR}composer install --no-dev -o
