@@ -22,3 +22,4 @@ if [ ! -f "$OPENSHIFT_DATA_DIR/composer" ]; then
 else
     ${ROOT_DIR}/cachet-hhvm/bin/hhvm $OPENSHIFT_DATA_DIR/composer self-update
 
+fi
