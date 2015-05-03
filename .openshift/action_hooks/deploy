@@ -57,6 +57,8 @@ fi
 # Setup Cachet
 cd $OPENSHIFT_REPO_DIR/Cachet
 cp $OPENSHIFT_REPO_DIR/env $OPENSHIFT_REPO_DIR/Cachet/.env
+echo "Installing composer dependencies"
 php ${OPENSHIFT_DATA_DIR}composer install --no-dev -o
+echo "Installing Database..."
 php artisan migrate
 php artisan key:generate
