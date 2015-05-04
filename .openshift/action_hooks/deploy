@@ -5,8 +5,6 @@ echo "deploying..."
 source $OPENSHIFT_PHP_DIR/lib/util
 export PATH=${OPENSHIFT_PHP_DIR}usr/bin:/bin:/usr/bin:/usr/sbin
 
-cp $OPENSHIFT_REPO_DIR/env $OPENSHIFT_REPO_DIR/Cachet/.env
-
 # start mysql
 ${OPENSHIFT_MYSQL_DIR}bin/control start
 
@@ -43,6 +41,8 @@ fi
 
 # Setup Cachet
 cd $OPENSHIFT_REPO_DIR/Cachet
+echo "Switching to master branch"
+git checkout master
 cp $OPENSHIFT_REPO_DIR/env.local.php $OPENSHIFT_REPO_DIR/Cachet/.env.local.php
 echo "Installing composer dependencies"
 php ${OPENSHIFT_DATA_DIR}composer install --no-dev -o
