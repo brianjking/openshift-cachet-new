@@ -45,7 +45,7 @@ echo "Switching to master branch"
 git checkout master
 cp $OPENSHIFT_REPO_DIR/env.local.php $OPENSHIFT_REPO_DIR/Cachet/.env.local.php
 echo "Installing composer dependencies"
-php ${OPENSHIFT_DATA_DIR}composer install --no-dev -o
-echo "Installing Database..."
-php artisan migrate
-php artisan key:generate
+#php ${OPENSHIFT_DATA_DIR}composer install --no-dev -o
+#echo "Installing Database..."
+#php artisan migrate
+#php artisan key:generate
