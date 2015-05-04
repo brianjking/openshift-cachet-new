@@ -1,5 +1,0 @@
-APP_ENV=local
-APP_DEBUG=false
-CACHE_DRIVER=apc
-SESSION_DRIVER=apc
-DB_DRIVER=mysql
